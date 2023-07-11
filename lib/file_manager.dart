@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:glob/glob.dart';
@@ -34,6 +35,7 @@ class FileManger {
   /// StatefulWidget(s)
   (bool, String) _checkIfScreenFile(File file) {
     String content = file.readAsStringSync();
+    log(content);
     bool isScreenFile = content.contains('@generate');
     return (isScreenFile, content);
   }
