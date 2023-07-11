@@ -34,8 +34,7 @@ class FileManger {
   /// StatefulWidget(s)
   (bool, String) _checkIfScreenFile(File file) {
     String content = file.readAsStringSync();
-    bool isScreenFile = content.contains('package:flutter/material.dart') ||
-        content.contains('package:flutter/cupertino.dart') ||
+    bool isScreenFile =
         content.contains('package:naxab_common/core/consts/exports.dart');
     return (isScreenFile, content);
   }
