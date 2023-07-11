@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:glob/glob.dart';
 import 'package:glob/list_local_fs.dart';
-import 'package:localization_text_generator/text_matcher.dart';
+import 'package:text_generator/text_matcher.dart';
 
 class FileManger {
   /// TextMatcher for current File
