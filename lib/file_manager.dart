@@ -36,7 +36,7 @@ class FileManger {
     String content = file.readAsStringSync();
     bool isScreenFile = content.contains('/material.dart') ||
         content.contains('/cupertino.dart') ||
-        content.contains('/exports.dart');
+        content.contains('package:naxab_common/core/consts/exports.dart');
     return (isScreenFile, content);
   }
 
