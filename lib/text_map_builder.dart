@@ -13,7 +13,7 @@ class TextMapBuilder {
   /// a generated name text{number}
   void generateTextMap(Set<String> texts) {
     for (int i = 0; i < texts.length; i++) {
-      _textsMap['text-$i'] = texts.elementAt(i);
+      _textsMap['key$i'] = texts.elementAt(i);
     }
   }
 }

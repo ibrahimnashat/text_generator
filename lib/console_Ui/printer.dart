@@ -13,8 +13,8 @@ class PrintHelper {
   void _logo() => print(chalk.magentaBright(logoFile));
 
   /// app name and version
-  void _nameVersion() => print(
-      chalk.black.onBrightMagenta(' Localization Text Generator: 0.0.1 \n'));
+  void _nameVersion() =>
+      print(chalk.black.onBrightMagenta('Text Generator: 0.0.1 \n'));
 
   /// prints current task
   String doingTask(String task) => chalk.magentaBright.italic('$task\n');

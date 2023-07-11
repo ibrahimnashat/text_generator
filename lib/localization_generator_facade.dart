@@ -61,8 +61,8 @@ class LocalizationJsonFacade {
   void generateLocalizationFile() {
     _print.init();
     // Stopwatch watch = Stopwatch()..start();
-    ProgressBar bar = ProgressBar(
-        total: 100, desc: 'Running localization_text_generator...', width: 70);
+    ProgressBar bar =
+        ProgressBar(total: 100, desc: 'Running text_generator...', width: 70);
 
     // bar.autoRender();
     try {
