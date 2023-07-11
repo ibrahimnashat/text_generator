@@ -36,8 +36,7 @@ class FileManger {
   (bool, String) _checkIfScreenFile(File file) {
     String content = file.readAsStringSync();
     log(content);
-    bool isScreenFile = content.contains('@generate') ||
-        content.contains('package:naxab_common/core/consts/exports.dart');
+    bool isScreenFile = content.contains('@generate');
     return (isScreenFile, content);
   }
 
