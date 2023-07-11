@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:glob/glob.dart';
 import 'package:glob/list_local_fs.dart';
-import 'package:text_generator/text_matcher.dart';
+import 'package:localization_text_generator/text_matcher.dart';
 
 class FileManger {
   /// TextMatcher for current File
@@ -34,9 +34,9 @@ class FileManger {
   /// StatefulWidget(s)
   (bool, String) _checkIfScreenFile(File file) {
     String content = file.readAsStringSync();
-    bool isScreenFile = content.contains('/material.dart') ||
-        content.contains('/cupertino.dart') ||
-        content.contains('package:naxab_common/core/consts/exports.dart');
+    bool isScreenFile = content.contains('package:flutter/material.dart') ||
+        content.contains('package:flutter/cupertino.dart') ||
+        content.contains('/core/consts/exports.dart');
     return (isScreenFile, content);
   }
 
