@@ -3,11 +3,14 @@ import 'dart:io';
 
 import 'package:glob/glob.dart';
 import 'package:glob/list_local_fs.dart';
+import 'package:text_generator/names.dart';
 import 'package:text_generator/text_matcher.dart';
 
 class FileManger {
   /// TextMatcher for current File
   late TextMatcher _textMatcher;
+
+  Names names = Names();
 
   /// Current Working Directory
   late Directory _currentDirectory;
@@ -49,8 +52,14 @@ class FileManger {
         bool isScreenFile = result.$1;
         String content = result.$2;
         if (isScreenFile) {
-          _textMatcher.matchAndExtractTexts(content);
+          final texts = _textMatcher.matchAndExtractTexts(content);
           // _textMatcher.getAllTexts();
+          for (var item in texts) {
+            String key = names.camelCaseToUnderscore(item.replaceAll(' ', '_'));
+            key = names.firstLower(key);
+            content.replaceAll(item, 'context.tr.$key');
+            file.writeAsString(content);
+          }
         }
       }
     }
@@ -60,7 +69,7 @@ class FileManger {
 
   void writeDataToFile(String data) {
     try {
-      final file = File('${_currentDirectory.path}/LANGUAGE.json');
+      final file = File('${_currentDirectory.path}/app_en.json');
       file.writeAsStringSync(data);
     } catch (e) {
       throw ('Could Not Write JSON File...');

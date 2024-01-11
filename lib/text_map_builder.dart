@@ -1,6 +1,10 @@
+import 'package:text_generator/names.dart';
+
 class TextMapBuilder {
   /// Texts Map
   late Map<String, String> _textsMap;
+
+  Names names = Names();
 
   /// Texts Map Getter
   Map<String, String> get textsMap => _textsMap;
@@ -13,7 +17,10 @@ class TextMapBuilder {
   /// a generated name text{number}
   void generateTextMap(Set<String> texts) {
     for (int i = 0; i < texts.length; i++) {
-      _textsMap['key$i'] = texts.elementAt(i);
+      String key = texts.elementAt(i);
+      key = names.camelCaseToUnderscore(key.replaceAll(' ', '_'));
+      key = names.firstLower(key);
+      _textsMap[key] = texts.elementAt(i);
     }
   }
 }

@@ -15,7 +15,8 @@ class TextMatcher {
   }
 
   /// extracts texts from dart file content and adds it to [texts]
-  void matchAndExtractTexts(String fileContent) {
+  List<String> matchAndExtractTexts(String fileContent) {
+    List<String> texts = [];
     //  RegExp(
     //       r'''(?:Text(?:Span|Painter|Theme|Button|Form|Field|FormField|Input|EditingController)?|AutoSizedText|RichText)\s*\(\s*(?:text:\s*)?(['"]{1,3})((?:.|[\r\n])*?)\1\s*(?:,|\))''',
     //       multiLine: true)
@@ -36,9 +37,11 @@ class TextMatcher {
             '';
         // adding to [texts] if not empty
         if (text.isNotEmpty) {
-          _texts.add(text);
+          texts.add(text);
         }
       }
     }
+    _texts.addAll(texts);
+    return texts;
   }
 }
