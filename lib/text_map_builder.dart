@@ -18,7 +18,7 @@ class TextMapBuilder {
   void generateTextMap(Set<String> texts) {
     for (int i = 0; i < texts.length; i++) {
       String key = texts.elementAt(i);
-      key = names.camelCaseToUnderscore(key.replaceAll(' ', '_'));
+      key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
       key = names.firstLower(key);
       _textsMap[key] = texts.elementAt(i);
     }
