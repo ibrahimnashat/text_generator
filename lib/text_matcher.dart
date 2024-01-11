@@ -29,9 +29,11 @@ class TextMatcher {
     final matches = pattern.allMatches(fileContent);
     // Looping over Matches
     for (final match in matches) {
-      final text = match.group(0);
-      if (text != null && text.isNotEmpty && !text.contains("package:")) {
-        texts.add(text);
+      if (match.groupCount != 0) {
+        final text = match.group(0);
+        if (text != null && text.isNotEmpty && !text.contains("package:")) {
+          texts.add(text);
+        }
       }
     }
     // for (Match match in matches) {
