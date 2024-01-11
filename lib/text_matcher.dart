@@ -29,7 +29,7 @@ class TextMatcher {
     final matches = regex.allMatches(fileContent);
     // Looping over Matches
     for (Match match in matches) {
-      if (match.groupCount != 0) {
+      if (match.groupCount != 0 && !match.input.contains('id =')) {
         final text = match.group(2) ??
             match.group(3) ??
             match.group(4) ??
