@@ -22,14 +22,14 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final regex = RegExp(
-        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1|id\s*=\s*['"]).)*)\1''',
+        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1|id\s*=).)*)\1''',
         multiLine: true);
 
     /// Matching from [fileContent] in matches
     final matches = regex.allMatches(fileContent);
     // Looping over Matches
     for (Match match in matches) {
-      if (match.groupCount != 0 && !match.input.contains('id =')) {
+      if (match.groupCount != 0) {
         final text = match.group(2) ??
             match.group(3) ??
             match.group(4) ??
