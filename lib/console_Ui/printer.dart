@@ -14,7 +14,7 @@ class PrintHelper {
 
   /// app name and version
   void _nameVersion() =>
-      print(chalk.black.onBrightMagenta('Text Generator: 0.0.3 \n'));
+      print(chalk.black.onBrightMagenta('Text Generator: 0.0.4 \n'));
 
   /// prints current task
   String doingTask(String task) => chalk.magentaBright.italic('$task\n');
