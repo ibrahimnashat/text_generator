@@ -22,7 +22,7 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final regex = RegExp(
-        r'''(?<!import\s)(?<!Key\()(['"])(';)(";)((?:\\\1|(?!\1).)*)\1''',
+        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1|id\s*=\s*['"]).)*)\1''',
         multiLine: true);
 
     /// Matching from [fileContent] in matches
