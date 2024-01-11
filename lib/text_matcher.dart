@@ -24,7 +24,7 @@ class TextMatcher {
     final regex1 = RegExp(
         r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
         multiLine: true);
-    final regex2 = RegExp(r'''^(?!.*id =).*$''', multiLine: true);
+    final regex2 = RegExp(r'\^\(\?!\.\*id =\)\.\*\$', multiLine: true);
 
     /// Matching from [fileContent] in matches
     final matches2 = regex2.allMatches(fileContent);
