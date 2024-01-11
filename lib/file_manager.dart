@@ -57,7 +57,7 @@ class FileManger {
           for (var item in texts) {
             String key = names.underscoreToCamelCase(item.replaceAll(' ', '_'));
             key = names.firstLower(key);
-            content.replaceAll(item, 'context.tr.$key');
+            content = content.replaceAll(item, 'context.tr.$key');
             file.writeAsStringSync(content);
           }
         }
