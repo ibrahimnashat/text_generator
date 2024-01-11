@@ -36,7 +36,7 @@ class TextMatcher {
             match.group(5) ??
             '';
         // adding to [texts] if not empty
-        if (text.isNotEmpty && !text.contains("import ")) {
+        if (text.isNotEmpty && !text.contains("package:")) {
           texts.add(text);
         }
       }
