@@ -21,12 +21,14 @@ class TextMatcher {
     //       r'''(?:Text(?:Span|Painter|Theme|Button|Form|Field|FormField|Input|EditingController)?|AutoSizedText|RichText)\s*\(\s*(?:text:\s*)?(['"]{1,3})((?:.|[\r\n])*?)\1\s*(?:,|\))''',
     //       multiLine: true)
     /// Regular Expression for extraction
-    final regex = RegExp(
-        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1|!id\s*=).)*)\1''',
+    final regex1 = RegExp(
+        r'''(?<!import\s)(?<!Key\()(['"])(\^\(\?!.\*id =\).\*\$)((?:\\\1|(?!\1).)*)\1''',
         multiLine: true);
 
+    // final regex2 = RegExp(r'', multiLine: true);
+
     /// Matching from [fileContent] in matches
-    final matches = regex.allMatches(fileContent);
+    final matches = regex1.allMatches(fileContent);
     // Looping over Matches
     for (Match match in matches) {
       if (match.groupCount != 0) {
