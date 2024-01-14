@@ -22,10 +22,11 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final regex = RegExp(
-        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
-        multiLine: true);
+      r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
+      multiLine: true,
+    );
 
-    final uppercasePattern = RegExp(r'\^\[A-Z\]\[a-zA-Z]\*\$');
+    final regex1 = RegExp(r'\^\[A-Z]\[a-zA-Z0-9]\*\$');
 
     /// Matching from [fileContent] in matches
     final matches = regex.allMatches(fileContent);
@@ -39,21 +40,11 @@ class TextMatcher {
             '';
         if (text.isNotEmpty &&
             !text.contains("package:") &&
-            !uppercasePattern.hasMatch(text)) {
+            !regex1.hasMatch(text)) {
           texts.add(text);
         }
       }
     }
-    // for (Match match in matches) {
-    //   if (match.groupCount != 0) {
-    //     final text = match.group(2) ??
-    //         match.group(3) ??
-    //         match.group(4) ??
-    //         match.group(5) ??
-    //         '';
-    //     // adding to [texts] if not empty
-    //   }
-    // }
     _texts.addAll(texts);
     return texts;
   }
