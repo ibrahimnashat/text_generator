@@ -70,10 +70,8 @@ class FileManger {
               key = newKey;
             }
             key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
-            key = names.firstLower(key);
 
             key = key
-                .toLowerCase()
                 .replaceAll(' ', '_')
                 .replaceAll(' ', '_')
                 .replaceAll(' ', '')
@@ -90,6 +88,7 @@ class FileManger {
               key += '(${params.join(',')})';
             }
 
+            key = names.firstLower(key);
             content = content.replaceAll("@generate", '');
             content = content.replaceAll("'$item'", 'context.tr.$key');
             content = content.replaceAll('"$item"', 'context.tr.$key');

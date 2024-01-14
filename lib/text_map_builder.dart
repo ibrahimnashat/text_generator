@@ -37,7 +37,6 @@ class TextMapBuilder {
         key = newKey;
       }
       key = names.underscoreToCamelCase(key
-          .toLowerCase()
           .replaceAll(' ', '_')
           .replaceAll(' ', '')
           .replaceAll('?', "")
@@ -48,6 +47,7 @@ class TextMapBuilder {
           .replaceAll('(', '')
           .replaceAll(')', '')
           .replaceAll('@', ''));
+
       key = names.firstLower(key);
       _textsMap[key] = text;
     }
