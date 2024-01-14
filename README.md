@@ -9,7 +9,7 @@ A Dart CLI Tool that can help you generate json file for all texts in all screen
 - Run this command in the enclosing folder of the project:
   `dart pub global activate --source git https://github.com/ibrahimnashat/text_generator`
 
-- run `glocalization` in your project's directory
+- run `generate_text` in your project's directory
 - (alt+shift+f) or (shift+option+f) on vscode or (option+command+l) or (ctrl+alt+l) on android studio to format json file.
 - change json file name to your desired language.
 - Enjoy!
