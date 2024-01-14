@@ -61,7 +61,7 @@ class FileManger {
               for (int i = 0; i < data.length; i++) {
                 if (data[i].contains("}")) {
                   int start = data[i].indexOf('}');
-                  newText += '{x$i}${data[i].substring(start)}';
+                  newText += '{x$i}${data[i].replaceFirst('}', '')}';
                   params.add(data[i].substring(0, start));
                 } else {
                   newText += data[i];
