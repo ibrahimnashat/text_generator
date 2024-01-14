@@ -54,22 +54,22 @@ class FileManger {
           // _textMatcher.getAllTexts();
           for (var item in texts) {
             List<String> params = [];
-            String text = item;
-            if (text.contains("\${")) {
-              final data = text.split('\${');
-              String newText = '';
+            String key = item;
+            if (key.contains("\${")) {
+              final data = key.split('\${');
+              String newKey = '';
               for (int i = 0; i < data.length; i++) {
                 if (data[i].contains("}")) {
                   int start = data[i].indexOf('}');
-                  newText += '{x$i}${data[i].substring(start + 1)}';
+                  key += 'X$i${data[i].substring(start + 1)}';
                   params.add(data[i].substring(0, start));
                 } else {
-                  newText += data[i];
+                  newKey += data[i];
                 }
               }
-              text = newText;
+              key = newKey;
             }
-            String key = names.underscoreToCamelCase(text.replaceAll(' ', '_'));
+            key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
             key = names.firstLower(key);
             if (params.isNotEmpty) {
               key += '(${params.join(',')})';
