@@ -39,7 +39,7 @@ class TextMatcher {
             '';
         if (text.isNotEmpty &&
             !text.contains("package:") &&
-            !uppercasePattern.hasMatch(text)) {
+            uppercasePattern.hasMatch(text)) {
           texts.add(text);
         }
       }
