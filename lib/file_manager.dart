@@ -55,8 +55,8 @@ class FileManger {
           for (var item in texts) {
             List<String> params = [];
             String key = item;
-            if (key.contains("\${")) {
-              final data = key.split('\${');
+            if (item.contains("\${")) {
+              final data = item.split('\${');
               String newKey = '';
               for (int i = 0; i < data.length; i++) {
                 if (data[i].contains("}")) {
@@ -71,9 +71,7 @@ class FileManger {
             }
             key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
             key = names.firstLower(key);
-            if (params.isNotEmpty) {
-              key += '(${params.join(',')})';
-            }
+
             key = key
                 .replaceAll(' ', '_')
                 .replaceAll('?', "")
@@ -82,6 +80,10 @@ class FileManger {
                 .replaceAll(',', '')
                 .replaceAll('%', '')
                 .replaceAll('@', '');
+
+            if (params.isNotEmpty) {
+              key += '(${params.join(',')})';
+            }
 
             content = content.replaceAll("'$item'", 'context.tr.$key');
             content = content.replaceAll('"$item"', 'context.tr.$key');
