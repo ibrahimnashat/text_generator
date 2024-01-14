@@ -22,11 +22,9 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final regex = RegExp(
-      r'''(?<!\(== ')(?<!\(== \s)(?<!\(!'\s)(?<!= \s)(?<!id =\s)(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
+      r'''(?<!\('\s)(?<! == \s)(?<!id =\s)(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
       multiLine: true,
     );
-
-    final isNumber = RegExp(r'\^\\d\+\$');
 
     /// Matching from [fileContent] in matches
     final matches = regex.allMatches(fileContent);
@@ -38,9 +36,19 @@ class TextMatcher {
             match.group(4) ??
             match.group(5) ??
             '';
-        if (text.isNotEmpty &&
-            !text.contains("package:") &&
-            !isNumber.hasMatch(text)) {
+        if (text.isNotEmpty && !text.contains("package:")) {
+          if (text.contains("\${")) {
+            final data = text.split('\${');
+            String newText = '';
+            for (int i = 0; i < data.length; i++) {
+              if (data[i].contains("}")) {
+                newText += '{x$i}${data[i].replaceFirst('}', '')}';
+              } else {
+                newText += data[i];
+              }
+            }
+            text = newText;
+          }
           texts.add(text);
         }
       }
