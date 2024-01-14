@@ -18,9 +18,24 @@ class TextMapBuilder {
   void generateTextMap(Set<String> texts) {
     for (int i = 0; i < texts.length; i++) {
       String key = texts.elementAt(i);
+      String text = texts.elementAt(i);
+      if (text.contains("\${")) {
+        final data = text.split('\${');
+        String newText = '';
+        for (int i = 0; i < data.length; i++) {
+          if (data[i].contains("}")) {
+            newText += '{x$i}${data[i].replaceFirst('}', '')}';
+            key += 'X$i${data[i].replaceFirst('}', '')}';
+          } else {
+            newText += data[i];
+            key += data[i];
+          }
+        }
+        text = newText;
+      }
       key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
       key = names.firstLower(key);
-      _textsMap[key] = texts.elementAt(i);
+      _textsMap[key] = text;
     }
   }
 }

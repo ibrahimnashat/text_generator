@@ -53,8 +53,26 @@ class FileManger {
           final texts = _textMatcher.matchAndExtractTexts(content);
           // _textMatcher.getAllTexts();
           for (var item in texts) {
-            String key = names.underscoreToCamelCase(item.replaceAll(' ', '_'));
+            List<String> params = [];
+            String text = item;
+            if (text.contains("\${")) {
+              final data = text.split('\${');
+              String newText = '';
+              for (int i = 0; i < data.length; i++) {
+                if (data[i].contains("}")) {
+                  newText += 'X$i${data[i].replaceFirst('}', '')}';
+                  params.add(data[i].split('}').first);
+                } else {
+                  newText += data[i];
+                }
+              }
+              text = newText;
+            }
+            String key = names.underscoreToCamelCase(text.replaceAll(' ', '_'));
             key = names.firstLower(key);
+            if (params.isNotEmpty) {
+              key += '(${params.join(',')})';
+            }
             content = content.replaceAll("'$item'", 'context.tr.$key');
             content = content.replaceAll('"$item"', 'context.tr.$key');
             file.writeAsStringSync(content);

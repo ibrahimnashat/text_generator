@@ -31,7 +31,7 @@ class TextMatcher {
     // Looping over Matches
     for (final match in matches) {
       if (match.groupCount != 0) {
-        final text = match.group(2) ??
+        String text = match.group(2) ??
             match.group(3) ??
             match.group(4) ??
             match.group(5) ??
