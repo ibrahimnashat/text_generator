@@ -25,7 +25,7 @@ class TextMatcher {
         r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
         multiLine: true);
 
-    final uppercasePattern = RegExp(r'\^[A\-Z]\+\$');
+    final uppercasePattern = RegExp(r'\^\[A-Z\]\[a-zA-Z]\*\$');
 
     /// Matching from [fileContent] in matches
     final matches = regex.allMatches(fileContent);
