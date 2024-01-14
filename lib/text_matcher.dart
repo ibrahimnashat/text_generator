@@ -22,7 +22,7 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final regex = RegExp(
-      r'''(?<!\(! == s)(?<!\(!'\s)(?<!= \s)(?<!id =\s)(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
+      r'''!(^\d+$)(?<!\(! == \s)(?<!\(!'\s)(?<!= \s)(?<!id =\s)(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
       multiLine: true,
     );
 
@@ -36,9 +36,7 @@ class TextMatcher {
             match.group(4) ??
             match.group(5) ??
             '';
-        if (text.isNotEmpty &&
-            !text.contains("package:") &&
-            !RegExp(r'\^\\d\+\$').hasMatch(text)) {
+        if (text.isNotEmpty && !text.contains("package:")) {
           texts.add(text);
         }
       }
