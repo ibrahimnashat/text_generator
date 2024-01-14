@@ -37,8 +37,8 @@ class FileManger {
   /// StatefulWidget(s)
   (bool, String) _checkIfScreenFile(File file) {
     String content = file.readAsStringSync();
-    // bool isScreenFile = content.contains('@generate');
-    return (content.isNotEmpty, content);
+    bool isScreenFile = content.contains('@generate');
+    return (isScreenFile, content);
   }
 
   /// Get Scree
