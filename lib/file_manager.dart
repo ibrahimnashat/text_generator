@@ -85,6 +85,7 @@ class FileManger {
               key += '(${params.join(',')})';
             }
 
+            content = content.replaceAll("@generate", '');
             content = content.replaceAll("'$item'", 'context.tr.$key');
             content = content.replaceAll('"$item"', 'context.tr.$key');
             file.writeAsStringSync(content);
