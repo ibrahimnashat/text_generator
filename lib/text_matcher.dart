@@ -40,7 +40,7 @@ class TextMatcher {
             '';
         if (text.isNotEmpty &&
             !text.contains("package:") &&
-            !regex1.hasMatch(text)) {
+            regex1.hasMatch(text)) {
           texts.add(text);
         }
       }
