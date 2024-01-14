@@ -22,16 +22,18 @@ class TextMapBuilder {
       if (text.contains("\${")) {
         final data = text.split('\${');
         String newText = '';
+        String newKey = '';
         for (int i = 0; i < data.length; i++) {
           if (data[i].contains("}")) {
             newText += '{x$i}${data[i].replaceFirst('}', '')}';
-            key += 'X$i${data[i].replaceFirst('}', '')}';
+            newKey += 'X$i${data[i].replaceFirst('}', '')}';
           } else {
             newText += data[i];
-            key += data[i];
+            newKey += data[i];
           }
         }
         text = newText;
+        key = newKey;
       }
       key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
       key = names.firstLower(key);
