@@ -37,19 +37,6 @@ class TextMatcher {
             match.group(5) ??
             '';
         if (text.isNotEmpty && !text.contains("package:")) {
-          //   if (text.contains("\${")) {
-          //     final data = text.split('\${');
-          //     String newText = '';
-          //     for (int i = 0; i < data.length; i++) {
-          //       if (data[i].contains("}")) {
-          //         int start = data[i].indexOf('}');
-          //         newText += '{x$i}${data[i].substring(start + 1)}';
-          //       } else {
-          //         newText += data[i];
-          //       }
-          //     }
-          //     text = newText;
-          //   }
           texts.add(text);
         }
       }
