@@ -25,8 +25,9 @@ class TextMapBuilder {
         String newKey = '';
         for (int i = 0; i < data.length; i++) {
           if (data[i].contains("}")) {
-            newText += '{x$i}${data[i].replaceFirst('}', '')}';
-            newKey += 'X$i${data[i].replaceFirst('}', '')}';
+            int start = data[i].indexOf('}');
+            newText += '{x$i}${data[i].substring(start)}';
+            newKey += 'X$i${data[i].substring(start)}';
           } else {
             newText += data[i];
             newKey += data[i];

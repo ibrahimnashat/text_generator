@@ -60,7 +60,8 @@ class FileManger {
               String newText = '';
               for (int i = 0; i < data.length; i++) {
                 if (data[i].contains("}")) {
-                  newText += 'X$i${data[i].replaceFirst('}', '')}';
+                  int start = data[i].indexOf('}');
+                  newText += '{x$i}${data[i].substring(start)}';
                   params.add(data[i].split('}').first);
                 } else {
                   newText += data[i];
