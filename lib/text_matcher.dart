@@ -22,11 +22,9 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final regex = RegExp(
-      r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
+      r'''(?<!id =\s)(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
       multiLine: true,
     );
-
-    final regex1 = RegExp(r'\^\[A-Z]\[a-zA-Z0-9]\*\$');
 
     /// Matching from [fileContent] in matches
     final matches = regex.allMatches(fileContent);
@@ -38,9 +36,7 @@ class TextMatcher {
             match.group(4) ??
             match.group(5) ??
             '';
-        if (text.isNotEmpty &&
-            !text.contains("package:") &&
-            !regex1.hasMatch(text)) {
+        if (text.isNotEmpty && !text.contains("package:")) {
           texts.add(text);
         }
       }
