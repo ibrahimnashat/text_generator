@@ -26,6 +26,8 @@ class TextMatcher {
       multiLine: true,
     );
 
+    final isNumber = RegExp(r'\^\\d\+\$');
+
     /// Matching from [fileContent] in matches
     final matches = regex.allMatches(fileContent);
     // Looping over Matches
@@ -36,7 +38,9 @@ class TextMatcher {
             match.group(4) ??
             match.group(5) ??
             '';
-        if (text.isNotEmpty && !text.contains("package:")) {
+        if (text.isNotEmpty &&
+            !text.contains("package:") &&
+            !isNumber.hasMatch(text)) {
           texts.add(text);
         }
       }
