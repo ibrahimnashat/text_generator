@@ -61,10 +61,7 @@ class FileManger {
               for (int i = 0; i < data.length; i++) {
                 if (data[i].contains("}")) {
                   int start = data[i].indexOf('}');
-                  if (start > 0) {
-                    start--;
-                  }
-                  newText += '{x$i}${data[i].substring(start)}';
+                  newText += '{x$i}${data[i].substring(start - 1)}';
                   params.add(data[i].substring(0, start));
                 } else {
                   newText += data[i];
@@ -77,6 +74,16 @@ class FileManger {
             if (params.isNotEmpty) {
               key += '(${params.join(',')})';
             }
+
+            key = key
+                .replaceAll(' ', '_')
+                .replaceAll('?', "")
+                .replaceAll('!', '')
+                .replaceAll("'", "")
+                .replaceAll(',', '')
+                .replaceAll('%', '')
+                .replaceAll('@', '');
+
             content = content.replaceAll("'$item'", 'context.tr.$key');
             content = content.replaceAll('"$item"', 'context.tr.$key');
             file.writeAsStringSync(content);

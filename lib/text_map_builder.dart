@@ -26,11 +26,8 @@ class TextMapBuilder {
         for (int i = 0; i < data.length; i++) {
           if (data[i].contains("}")) {
             int start = data[i].indexOf('}');
-            if (start > 0) {
-              start--;
-            }
             newText += '{x$i}${data[i].substring(start)}';
-            newKey += 'X$i${data[i].substring(start)}';
+            newKey += 'X$i${data[i].substring(start - 1)}';
           } else {
             newText += data[i];
             newKey += data[i];
@@ -39,8 +36,15 @@ class TextMapBuilder {
         text = newText;
         key = newKey;
       }
-      key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
-      key = names.firstLower(key).replaceAll("'", "");
+      key = names.underscoreToCamelCase(key
+          .replaceAll(' ', '_')
+          .replaceAll('?', "")
+          .replaceAll('!', '')
+          .replaceAll("'", "")
+          .replaceAll(',', '')
+          .replaceAll('%', '')
+          .replaceAll('@', ''));
+      key = names.firstLower(key);
       _textsMap[key] = text;
     }
   }
