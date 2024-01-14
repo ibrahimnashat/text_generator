@@ -22,8 +22,9 @@ class TextMatcher {
     //       multiLine: true)
     /// Regular Expression for extraction
     final pattern = RegExp(
-        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1|^(?!.*id =).*$''',
-        multiLine: true);
+      r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1|^(?!.*id =).*$''',
+      multiLine: true,
+    );
 
     /// Matching from [fileContent] in matches
     final matches = pattern.allMatches(fileContent);
