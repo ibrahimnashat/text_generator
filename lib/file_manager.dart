@@ -69,10 +69,8 @@ class FileManger {
               }
               key = newKey;
             }
-            key = names.underscoreToCamelCase(key.replaceAll(' ', '_'));
 
-            key = key
-                .replaceAll(' ', '_')
+            key = names.underscoreToCamelCase(key
                 .replaceAll(' ', '_')
                 .replaceAll(' ', '')
                 .replaceAll('?', "")
@@ -82,16 +80,16 @@ class FileManger {
                 .replaceAll('%', '')
                 .replaceAll('(', '')
                 .replaceAll(')', '')
-                .replaceAll('@', '');
+                .replaceAll('@', ''));
 
             if (params.isNotEmpty) {
               key += '(${params.join(',')})';
             }
 
             key = names.firstLower(key);
-            content = content.replaceAll("@generate", '');
             content = content.replaceAll("'$item'", 'context.tr.$key');
             content = content.replaceAll('"$item"', 'context.tr.$key');
+            content = content.replaceAll("@generate", '');
             file.writeAsStringSync(content);
           }
         }
