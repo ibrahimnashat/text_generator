@@ -79,6 +79,8 @@ class FileManger {
                 .replaceAll("'", "")
                 .replaceAll(',', '')
                 .replaceAll('%', '')
+                .replaceAll('(', '')
+                .replaceAll(')', '')
                 .replaceAll('@', '');
 
             if (params.isNotEmpty) {

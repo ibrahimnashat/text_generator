@@ -43,6 +43,8 @@ class TextMapBuilder {
           .replaceAll("'", "")
           .replaceAll(',', '')
           .replaceAll('%', '')
+          .replaceAll('(', '')
+          .replaceAll(')', '')
           .replaceAll('@', ''));
       key = names.firstLower(key);
       _textsMap[key] = text;
