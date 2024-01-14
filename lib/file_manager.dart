@@ -73,7 +73,10 @@ class FileManger {
             key = names.firstLower(key);
 
             key = key
+                .toLowerCase()
                 .replaceAll(' ', '_')
+                .replaceAll(' ', '_')
+                .replaceAll(' ', '')
                 .replaceAll('?', "")
                 .replaceAll('!', '')
                 .replaceAll("'", "")
