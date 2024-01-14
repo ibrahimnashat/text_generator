@@ -21,15 +21,14 @@ class TextMatcher {
     //       r'''(?:Text(?:Span|Painter|Theme|Button|Form|Field|FormField|Input|EditingController)?|AutoSizedText|RichText)\s*\(\s*(?:text:\s*)?(['"]{1,3})((?:.|[\r\n])*?)\1\s*(?:,|\))''',
     //       multiLine: true)
     /// Regular Expression for extraction
-    final pattern = RegExp(
-      r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1|^(?!.*id =).*$''',
-      multiLine: true,
-    );
+    final regex = RegExp(
+        r'''(?<!import\s)(?<!Key\()(['"])((?:\\\1|(?!\1).)*)\1''',
+        multiLine: true);
 
     final uppercasePattern = RegExp(r'\^[A\-Z]\+\$');
 
     /// Matching from [fileContent] in matches
-    final matches = pattern.allMatches(fileContent);
+    final matches = regex.allMatches(fileContent);
     // Looping over Matches
     for (final match in matches) {
       if (match.groupCount != 0) {
